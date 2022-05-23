@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tb{
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <canvas id="canvas"></canvas>
+    </div>
+    <div>
+        <input type="text" id="col">
+        <button id="addText">Ввести данные</button>
+        <button onclick="diagramma()">нарисовать</button>
+    </div>
+    <div id="tbs">
+
+    </div>
+
+    <script>
+        function f(){
+            //let g = canvas.getContext("2d");
+            //g.fillStyle = "red";
+            //g.fillRect(10,10,100,50);
+            //draw_grid();
+        }
+
+        addText.onclick =f_addText;
+        let tb = [];
+
+        function f_addText(){
+            document.getElementById('tbs').innerHTML = "";
+            var n =  (Number)(document.getElementById("col").value);
+            for(i=0; i<n; i++)
+            {
+                tb[i] = document.createElement("input");
+                tb[i].setAttribute("type","text");
+                tb[i].className="tb";
+                tbs.append(tb[i]);
+                tb[i].value = getRandomInt(canvas.height);
+            }
+            //diagramma();
+        }
+        function draw_grid(){
+            //document.getElementById('canvas').innerHTML = "";
+            let g = canvas.getContext("2d");
+            g.clearRect(0, 0, canvas.width, canvas.height);
+            g.strokeStyle="Green";
+            g.beginPath();
+            for (var y = 0.5; y < canvas.width; y += 10) {
+                g.moveTo(0, y);
+                g.lineTo(canvas.width, y);
+            }
+            //g.moveTo(0, 0);
+            //g.lineTo(canvas.width, canvas.height);
+            g.stroke();
+            g.closePath();
+        }
+        x=0;
+        y = canvas.height;
+        function diagramma(){
+            //document.getElementById('canvas').innerHTML = "";
+            draw_grid();
+            var n =  (Number)(document.getElementById("col").value);
+            dx = 2;
+            w = canvas.width / n;
+            let g = canvas.getContext("2d");
+            // for(i = 0; i<n; i++)
+            // {
+            //    g.fillStyle = set_color();
+            //    g.fillRect(x+(w+dx) * i, y - tb[i].value, w, tb[i])
+            // }
+            for(var i=0; i<n; i++) { 
+                var color = set_color(); 
+                g.fillStyle = color; 
+                var dp = tb[i].value; 
+                g.fillRect(x+ w * i, y - dp, w, dp); 
+            }
+        }
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+        function set_color()
+        {
+            r = Math.floor(Math.random() * (256)),
+            g = Math.floor(Math.random() * (256)),
+            b = Math.floor(Math.random() * (256)),
+            color = '#' + r.toString(16) + g.toString(16) + b.toString(16);
+            return color;
+        }
+    </script>
+</body>
+</html>
