@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bor{
+            border-color: red;
+        }
+    </style>
+    <script>
+        function em(){
+            var r = document.forms[0].email.value
+            if (!r.includes('@uni-dubna.ru')){
+            alert("почта не подходит");
+            document.getElementById("email").classList.add("bor");
+            return false;
+            }
+        }
+        function pas(){
+            if(document.forms[0].password.value != document.forms[0].password_check.value){
+                alert("пароли не совпадют");
+                document.getElementById("password").classList.add("bor");
+                }
+            else{
+                console.log(document.forms[0].password.value);
+                }
+        }
+
+        function f()
+        {
+            pas();
+            em();
+            console.log(document.forms[0].login.value);
+            /* console.log(document.forms[0].password.value); */
+            console.log(document.forms[0].email.value);
+            /* console.log(document.forms[0]. mailing.checked); */
+            if(document.forms[0].mailing.checked){
+                console.log(document.forms[0]. mailing.value);
+                }
+            console.log(document.forms[0].gender.value);
+            let index=document.forms[0].city.selectedIndexж
+
+
+            if (document.forms[0].login.value.length < 5){
+                alert("Длина логина меньше 5");
+                document.getElementById("login").classList.add("bor");
+                }
+            if(!document.forms[0].mailing.checked){
+                alert("Вы уверены?");
+                }
+            if(!document.forms[0].gender.value){
+                alert("Выберите пол");
+                document.getElementById("gen").classList.add("bor");
+                }
+        }
+    </script>
+</head>
+<body>
+    <form action="javascript:f()">
+    <div>
+        <label for = "login">Введите логин</label>
+        <input type="text" name="login" id="login" required>
+    </div>
+    <div>
+        <label for = "password">Введите пароль</label>
+        <input type="password" name="password" id="password">
+    </div>
+    <div>
+        <label for = "password">Повторите пароль</label>
+        <input type="password" name="password_check" id="password_check">
+    </div>
+    <div>
+        <label for = "email">Введите email</label>
+        <input type="email" name="email" id="email">
+    </div>
+    <div>
+        <label for = "mailing">подписаться на рассылку
+        <input type="checkbox" name="mailing" id="mailing">
+        </label>
+    </div>
+    <div id="gen">
+        пол
+        <label for = "m"><input type="radio" name="gender" id="m" value="m">Мужской</label>
+        <label for = "w"><input type="radio" name="gender" id="w" value="w">Женский</label>
+    </div>
+    <div>
+        <select name="city" id="city">
+        <option value="Dubna">Дубна</option>
+        <option value="Moscow">Москва</option>
+        <option value="Dmitrov">Дмитров</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="отправить">
+        <input type="reset" value="сбросить">
+    </div>
+</body>
+</html>
